@@ -10,10 +10,10 @@ def stations():
     for row in Station.query.all():
         results.append(
             {
-                'station_id': row.number,
+                'station_id': int(row.number),
                 'name': row.name,
-                'latitude': row.latitude,
-                'longitude': row.longitude
+                'latitude': float(row.latitude),
+                'longitude': float(row.longitude)
             }
         )
     response = jsonify(results)
