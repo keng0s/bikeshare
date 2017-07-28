@@ -2,7 +2,6 @@ from app import db
 
 
 class Station(db.Model):
-
     __tablename__ = 'stations'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -11,6 +10,19 @@ class Station(db.Model):
     latitude = db.Column(db.Numeric(10, 6))
     longitude = db.Column(db.Numeric(10, 6))
     capacity = db.Column(db.SmallInteger)
+    trips = db.relationship('Trip')
 
     def __repr__(self):
         return '<Station: {}>'.format(self.name)
+
+
+class Trip(db.Model):
+    __tablename__ = 'trips'
+
+    id = db.Column(db.Integer, primary_key=True)
+    start_station_id = db.Column(db.Integer, db.ForeignKey('stations.id'), nullable=False, index=True)
+    end_station_id = db.Column(db.Integer, db.ForeignKey('stations.id'), nullable=False, index=True)
+    start_date = db.Column(db.DateTime, index=True, nullable=False)
+    end_date = db.Column(db.DateTime, index=True, nullable=False)
+    bike_nr = db.Column(db.String(20))
+    membership_type = db.Column(db.String(50))
