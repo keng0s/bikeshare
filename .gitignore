@@ -3,5 +3,3 @@ Data/
 .idea/
 __pycache__/
 app/admin/
-app/static/
-app/templates/
