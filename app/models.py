@@ -10,7 +10,6 @@ class Station(db.Model):
     latitude = db.Column(db.Numeric(10, 6))
     longitude = db.Column(db.Numeric(10, 6))
     capacity = db.Column(db.SmallInteger)
-    trips = db.relationship('Trip')
 
     def __repr__(self):
         return '<Station: {}>'.format(self.name)
@@ -26,3 +25,5 @@ class Trip(db.Model):
     end_date = db.Column(db.DateTime, index=True, nullable=False)
     bike_nr = db.Column(db.String(20))
     membership_type = db.Column(db.String(50))
+    start_station = db.relationship('Station', foreign_keys=[start_station_id])
+    end_station = db.relationship('Station', foreign_keys=[end_station_id])
