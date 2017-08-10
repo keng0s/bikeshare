@@ -5,9 +5,6 @@ function initMap() {
       center: {lat: 38.902572, lng: -77.038486}
     });
     var infoWindow = new google.maps.InfoWindow;
-
-
-
     var markers = [];
 
     d3.json("/api/stations", function (data) {
